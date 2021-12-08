@@ -1,6 +1,8 @@
 # hippo
 Main repository for the hippo project. 
 
+JIRA Project: https://hippo-the-app.atlassian.net/
+
 # Introduction
 
 The Hippo app allows users to run inference on custom medical images and get diagnoses. The app
