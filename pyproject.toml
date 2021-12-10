@@ -2,7 +2,7 @@
 name = "hippo"
 version = "0.1.0"
 description = "This project is meant to help categorise images as diseased or healthy."
-authors = ["mateimol <matei.moldoveanu@gmail.com>"]
+authors = ["mateimol <matei.moldoveanu@gmail.com>", "yribeiro <yohahnribeiro29@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = ">=3.9,<3.11"
