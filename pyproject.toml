@@ -5,7 +5,7 @@ description = "This project is meant to help categorise images as diseased or he
 authors = ["mateimol <matei.moldoveanu@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.9"
 
 [tool.poetry.dev-dependencies]
 
