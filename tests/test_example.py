@@ -1,2 +1,3 @@
-def test_example():
-    assert True
+class TestExampleSuite:
+    def test_example(self):
+        assert True
