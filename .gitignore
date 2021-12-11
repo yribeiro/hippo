@@ -127,3 +127,11 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+!docs/
+docs/*
+!docs/source/conf.py
+!docs/source/index.rst
+!docs/make.bat
+!docs/Makefile
+!docs/requirements.txt
