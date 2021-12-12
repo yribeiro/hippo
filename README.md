@@ -1,5 +1,5 @@
 # hippo
-Main repository for the hippo project. 
+Main repository for the hippo project.
 
 JIRA Project: https://hippo-the-app.atlassian.net/
 
