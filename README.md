@@ -23,9 +23,7 @@ TBC
 
 ### Documentation Build
 
-For this section ensure the poetry virtual environment is activated in the terminal.
-
-Building the documentation runs in two stages:
+Building the documentation runs in two stages. Run the following commands in a terminal in the project root folder:
 
 1. Auto build documentation RST files for all modules in the hippo project:
 
@@ -33,7 +31,7 @@ Building the documentation runs in two stages:
 
 2. Build final documentation set:
 
-    * `.\docs\make.bat html`
+    * `poetry run sphinx-build -q -b html docs\source docs\build\html`
 
 The documentation can be viewed by opening the `.\docs\build\html\index.html` file.
 
