@@ -25,3 +25,11 @@ TBC
  # Contributors
  Matei Moldoveanu (matei.moldoveanu@gmail.com)
  Yohahn Ribeiro (yohahnribeiro29@gmail.com)
+
+
+## Pre-commit setup
+Setting up the pre-commit library to run the pre-commit hooks whenever you commit your code is done as follows:
+1. To setup pre-commit to run using poetry run the command :
+        *'poetry run pre-commit install'
+2. If you want to run the pre-commit checks manually run the command:
+        *'poetry run pre-commit run --all-files'
