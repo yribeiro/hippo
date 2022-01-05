@@ -11,6 +11,7 @@ repos:
     -   id: check-ast
     -   id: fix-encoding-pragma
     -   id: name-tests-test
+        args: [--django]
 
 -   repo: https://gitlab.com/pycqa/flake8
     rev: 3.9.2
