@@ -39,6 +39,15 @@ The documentation can be viewed by opening the `.\docs\build\html\index.html` fi
 
 TBC
 
+## Pre-commit setup
+
+Setting up the pre-commit library to run the pre-commit hooks whenever you commit your code is done as follows:
+
+1. To setup pre-commit to run using poetry run the command :
+        *'poetry run pre-commit install'
+2. If you want to run the pre-commit checks manually run the command:
+        *'poetry run pre-commit run --all-files'
+
 ## Dataset
 
 The dataset used for training the model is located [here](https://www.kaggle.com/c/siim-isic-melanoma-classification/). The aim of the model is to identify malignant skin lesions. The dataset has 33126 images coming from 2056 different patients. Of the total images, 98% of them represent healthy skin lesions while 2% represent diseased ones.
