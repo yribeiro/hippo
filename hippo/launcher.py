@@ -41,6 +41,15 @@ class HippoServiceLauncher:
         defined under the API package and builds a FastAPI application
         that can be launched within a WSGI server.
 
+        Improvement Note:
+            This implementation does not follow the Single Responsibilty Principle. See SOLID code
+            dev practices. The responsibility for creating the application should live within
+            another component, and this class should be responsible for app launch and resource clean up.
+
+            Patterns such as the Builder pattern, can be used to encapsulate the app construction
+            into a separate class. This class can then be injected into the launcher
+            (Inversion Principle via Dependency Injection).
+
         :return: FastAPI instance populated with the appropriate routes.
         """
         app = FastAPI()
