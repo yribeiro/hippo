@@ -25,6 +25,10 @@ class HippoServiceLauncher:
         :param host: IP address host to launch service on.
         :param port: Port number to host service on.
         """
+        # checks
+        assert isinstance(host, str), f"Expected type string for arg: host, got type: {type(host)}"
+        assert isinstance(port, int), f"Expected type int for arg: port, got type: {type(port)}"
+
         # dunder to mask properties (private)
         self.__host = host
         self.__port = port
