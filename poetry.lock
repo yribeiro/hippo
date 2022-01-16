@@ -719,6 +719,14 @@ python-versions = ">=3.6.2"
 typing-extensions = "*"
 
 [[package]]
+name = "types-setuptools"
+version = "57.4.7"
+description = "Typing stubs for setuptools"
+category = "dev"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "typing-extensions"
 version = "4.0.1"
 description = "Backported and Experimental Type Hints for Python 3.6+"
@@ -787,7 +795,7 @@ watchdog = ["watchdog"]
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.9,<3.11"
-content-hash = "6cf567470218a68d363f38479340f7745f82e57e0f89566eff00e3a3bc54fc4e"
+content-hash = "ddfdaa9ee222c3b07c62c40a03c590c43d85342c1ef0c22a49d25d651eb98df1"
 
 [metadata.files]
 alabaster = [
@@ -1228,6 +1236,10 @@ torch = [
     {file = "torch-1.10.1-cp39-cp39-win_amd64.whl", hash = "sha256:607eccb7d539a11877cd02d95f4b164b7941fcf538ac7ff087bfed19e3644283"},
     {file = "torch-1.10.1-cp39-none-macosx_10_9_x86_64.whl", hash = "sha256:26b6dfbe21e247e67c615bfab0017ec391ed1517f88bbeea6228a49edd24cd88"},
     {file = "torch-1.10.1-cp39-none-macosx_11_0_arm64.whl", hash = "sha256:5644280d88c5b6de27eacc0d911f968aad41a4bab297af4df5e571bc0927d3e4"},
+]
+types-setuptools = [
+    {file = "types-setuptools-57.4.7.tar.gz", hash = "sha256:9677d969b00ec1c14552f5be2b2b47a6fbea4d0ed4de0fdcee18abdaa0cc9267"},
+    {file = "types_setuptools-57.4.7-py3-none-any.whl", hash = "sha256:ffda504687ea02d4b7751c0d1df517fbbcdc276836d90849e4f1a5f1ccd79f01"},
 ]
 typing-extensions = [
     {file = "typing_extensions-4.0.1-py3-none-any.whl", hash = "sha256:7f001e5ac290a0c0401508864c7ec868be4e701886d5b573a9528ed3973d9d3b"},

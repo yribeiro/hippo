@@ -3,7 +3,7 @@ import uvicorn
 
 from fastapi import FastAPI, APIRouter
 
-from hippo import api
+from hippo import api, __version__
 
 
 class HippoServiceLauncher:
@@ -52,7 +52,7 @@ class HippoServiceLauncher:
 
         :return: FastAPI instance populated with the appropriate routes.
         """
-        app = FastAPI()
+        app = FastAPI(title="Hippo Diagnosis Service", version=__version__)
         # get all the properties of the hippo.api package (which includes the router instances)
         hashmap = vars(api)
         # store all properties that are of the APIRouter type

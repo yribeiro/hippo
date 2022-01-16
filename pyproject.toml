@@ -4,6 +4,11 @@ version = "0.1.0"
 description = "This project is meant to help categorise images as diseased or healthy."
 authors = ["mateimol <matei.moldoveanu@gmail.com>", "yribeiro <yohahnribeiro29@gmail.com>"]
 
+[tool.poetry.scripts]
+# serve is typically used as the convention in JS web app deployments
+# so have followed the convention here for service run command
+serve="hippo.main:main"
+
 [tool.poetry.dependencies]
 python = ">=3.9,<3.11"
 numpy = "^1.21.4"
@@ -22,6 +27,7 @@ autoflake = "^1.4"
 Sphinx = "^4.3.1"
 sphinx-rtd-theme = "^1.0.0"
 sphinx-autodoc-typehints = "^1.12.0"
+types-setuptools = "^57.4.7"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
