@@ -2,7 +2,8 @@
 from typing import Dict
 from fastapi import APIRouter
 
-router = APIRouter(tags=["index"], prefix="")
+# Note: the prefix here indicates it is the root path i.e. http://service:port/
+router = APIRouter(tags=["index"], prefix="/")
 
 
 @router.get("")
