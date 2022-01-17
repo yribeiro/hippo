@@ -18,6 +18,7 @@ fastapi = "^0.71.0"
 uvicorn = "^0.17.0"
 
 [tool.poetry.dev-dependencies]
+coverage = "^6.2"
 pytest = "^6.2.5"
 pre-commit = "^2.16.0"
 flake8 = "^4.0.1"
