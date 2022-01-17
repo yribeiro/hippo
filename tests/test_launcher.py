@@ -11,7 +11,10 @@ from hippo.launcher import HippoServiceLauncher
 class TestServiceLauncher:
     @pytest.mark.parametrize(
         ["test_host", "test_port"],
-        [(1234, 1234), ("localhost", "1234")],  # invalid host type, valid port type  # valid host type, invalid port type
+        [
+            (1234, 1234),  # invalid host type, valid port type
+            ("localhost", "1234"),  # valid host type, invalid port type
+        ],
     )
     def test_launcher_throws_errors_as_expected(self, test_host, test_port) -> None:  # type: ignore
         # setup, execute and assert
