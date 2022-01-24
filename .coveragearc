@@ -1,0 +1,6 @@
+[run]
+source = .
+omit =
+    # omit tests and virtualenvs
+    */venv/*
+    tests/*

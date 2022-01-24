@@ -13,7 +13,19 @@ Look forward to all the cool new features!
 
 ## Test Instructions
 
-TBC
+To run tests using the poetry virtual environment run the following command in the project root directory:
+
+```bash
+poetry run pytest .\tests\
+```
+
+To run tests and generate coverage reports run the following commands in the project root directory:
+
+```bash
+poetry run coverage erase
+poetry run coverage run -m pytest -v -s
+poetry run coverage report -m
+```
 
 ## Build Instructions
 

@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 
 class ExampleClass:
     """
@@ -6,4 +8,5 @@ class ExampleClass:
     Attributes:
         example_attribute (int): A random integer attribute
     """
+
     pass
