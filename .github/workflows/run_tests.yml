@@ -9,7 +9,7 @@ jobs:
   # This workflow contains a single job called "pytest"
   tests:
     # The type of runner that the job will run on
-    runs-on: window-latest
+    runs-on: windows-latest
     defaults:
       run:
         shell: bash
