@@ -47,7 +47,7 @@ jobs:
     - name: Erase Coverage And Run Tests
       run: |
         poetry run coverage erase
-        poetry run coverage run -m pytest .\tests\ -v -s
+        poetry run coverage run -m pytest -v -s
 
     - name: Check Coverage Percentage
       run: |
