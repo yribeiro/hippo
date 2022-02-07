@@ -45,6 +45,6 @@ jobs:
     # Runs precommit using the repo config file
     #----------------------------------------------
     - name: Run pre-commit with config
-      uses: pre-commit/action@v2.0.3
-      with:
-        extra_args: --all-files --verbose --config .pre-commit-config.yaml
+      run: |
+        poetry run precommit install
+        poetry run pre-commit run --all-files
