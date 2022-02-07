@@ -46,5 +46,5 @@ jobs:
     #----------------------------------------------
     - name: Build Documentation
       run: |
-        poetry run sphinx-apidoc -f -o docs\source hippo --implicit-namespaces
-        poetry run sphinx-build -c docs\source -b html docs\source docs\build\html
+        poetry run sphinx-apidoc -f -o docs/source hippo --implicit-namespaces
+        poetry run sphinx-build -c docs/source -b html docs/source docs/build/html
