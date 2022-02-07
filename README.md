@@ -39,11 +39,11 @@ Building the documentation runs in two stages. Run the following commands in a t
 
 1. Auto build documentation RST files for all modules in the hippo project:
 
-    * `poetry run sphinx-apidoc -q -f -o docs\source hippo --implicit-namespaces`
+    * `poetry run sphinx-apidoc -f -o docs\source hippo --implicit-namespaces`
 
 2. Build final documentation set:
 
-    * `poetry run sphinx-build -q -b html docs\source docs\build\html`
+    * `poetry run sphinx-build -c docs\source -b html docs\source docs\build\html`
 
 The documentation can be viewed by opening the `.\docs\build\html\index.html` file.
 
