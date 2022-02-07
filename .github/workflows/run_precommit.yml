@@ -46,5 +46,5 @@ jobs:
     #----------------------------------------------
     - name: Run pre-commit with config
       run: |
-        poetry run precommit install
+        poetry run pre-commit install
         poetry run pre-commit run --all-files
