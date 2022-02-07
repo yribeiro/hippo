@@ -1,7 +1,7 @@
 # This is a basic workflow to help you get started with Actions
 name: run_precommit
 # Run on push and pull request for all branches
-on: [push]
+on: [push, pull_request]
 
 # A workflow run is made up of one or more jobs that can run sequentially
 # or in parallel
