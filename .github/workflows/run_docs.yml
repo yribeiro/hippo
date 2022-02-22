@@ -42,7 +42,7 @@ jobs:
       run: poetry install --no-interaction
 
     #----------------------------------------------
-    # Runs precommit using the repo config file
+    # build docs using custom poetry command
     #----------------------------------------------
     - name: Build Documentation
       run: |
