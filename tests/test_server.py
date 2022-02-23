@@ -31,3 +31,14 @@ class TestServer:
 
         mockUvicorn.assert_called_once_with("hippo.main:DEVAPP", host="localhost", port=12345, log_level="info")
         mockThread.assert_called_once_with(target=mockUvicornServer, daemon=True)
+
+    @patch("hippo.server.threading.Thread.start")
+    @patch("hippo.server.threading.Thread.join")
+    def test_server_runs_thread_correctly(self, mockThreadjoin: Mock, mockThreadstart: Mock) -> None:
+        server_instance = Server(app="hippo.main:DEVAPP", host="localhost", port=12345, log_level="info")
+        server_instance.run_thread()
+        server_instance.stop_thread()
+
+        assert server_instance.should_exit is True
+        mockThreadstart.assert_called_once()
+        mockThreadjoin.assert_called_once()
