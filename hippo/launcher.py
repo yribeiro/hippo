@@ -89,10 +89,15 @@ class HippoServiceLauncher:
     def start(self) -> None:
         """
         Method to start the app using an underlying uvicorn server.
-        Note:
-            This method is main thread blocking.
-            TODO: Implementation is required to run this server inside subprocess / child daemon thread.
+        Note: This method runs the server inside subprocess / child daemon thread.
         """
-        uvicorn.run(app=self.__app, host=self.__host, port=self.__port)
+
+        self.__server.run_thread()
+
+    def stop(self) -> None:
+        """
+        Method to stop the apps uvicorn server.
+        """
+        self.__server.stop_thread()
 
     # endregion
