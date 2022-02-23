@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import uvicorn
-
+from typing import Iterator
 from fastapi import FastAPI, APIRouter
 from threading import Thread
 from hippo import api, __version__
@@ -99,5 +99,17 @@ class HippoServiceLauncher:
         Method to stop the apps uvicorn server.
         """
         self.__server.stop_thread()
+
+    @contextlib.contextmanager
+    def run_in_thread(self) -> Iterator[None]:
+        """ """
+        self.start()
+        try:
+            # I don't understand what is the point of this while loop. but it was in the description that I based this funtion on - to figure out
+            while not self.__server.started:
+                time.sleep(1e-3)
+            yield
+        finally:
+            self.stop()
 
     # endregion
