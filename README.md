@@ -39,11 +39,11 @@ Building the documentation runs in two stages. Run the following commands in a t
 
 1. Auto build documentation RST files for all modules in the hippo project:
 
-    * `poetry run sphinx-apidoc -q -f -o docs\source hippo --implicit-namespaces`
+    * `poetry run sphinx-apidoc -f -o docs\source hippo --implicit-namespaces`
 
 2. Build final documentation set:
 
-    * `poetry run sphinx-build -q -b html docs\source docs\build\html`
+    * `poetry run sphinx-build -c docs\source -b html docs\source docs\build\html`
 
 The documentation can be viewed by opening the `.\docs\build\html\index.html` file.
 
@@ -56,9 +56,10 @@ TBC
 Setting up the pre-commit library to run the pre-commit hooks whenever you commit your code is done as follows:
 
 1. To setup pre-commit to run using poetry run the command :
-        *'poetry run pre-commit install'
+    * `poetry run pre-commit install`
+
 2. If you want to run the pre-commit checks manually run the command:
-        *'poetry run pre-commit run --all-files'
+    * `poetry run pre-commit run --all-files`
 
 ## Dataset
 
