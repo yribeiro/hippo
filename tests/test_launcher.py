@@ -56,16 +56,20 @@ class TestServiceLauncher:
             assert expected_router == mockFastAPI.return_value.include_router.call_args[0][idx]
         assert launcher._HippoServiceLauncher__app == mockFastAPI.return_value  # type: ignore
 
-    @patch("hippo.launcher.uvicorn")
-    def test_launcher_runs_server_as_expected(self, mock_uvicorn: Mock) -> None:
+    @patch("hippo.launcher.Server")
+    @patch("hippo.launcher.HippoServiceLauncher.start")  # check if the start function is called
+    @patch("hippo.launcher.HippoServiceLauncher.stop")  # check if the stop function is called
+    def test_launcher_runs_server_as_expected(self, mock_stop_func: Mock, mock_start_func: Mock, mock_uvicorn: Mock) -> None:
         # setup
         launcher = HippoServiceLauncher(host="localhost", port=12345)
 
         # execute
-        launcher.start()
-
+        with launcher.run_in_thread():
+            None
         # assert
-        assert mock_uvicorn.run.call_count == 1
-        assert mock_uvicorn.run.call_args[1]["app"] == launcher._HippoServiceLauncher__app  # type: ignore
-        assert mock_uvicorn.run.call_args[1]["host"] == "localhost"
-        assert mock_uvicorn.run.call_args[1]["port"] == 12345
+        assert mock_start_func.call_count == 1
+        assert mock_stop_func.call_count == 1
+        assert mock_uvicorn.call_count == 1
+        assert mock_uvicorn.call_args[1]["app"] == launcher._HippoServiceLauncher__app  # type: ignore
+        assert mock_uvicorn.call_args[1]["host"] == "localhost"
+        assert mock_uvicorn.call_args[1]["port"] == 12345
