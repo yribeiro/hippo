@@ -28,7 +28,7 @@ class Server(uvicorn.Server):
         """
         assert isinstance(host, str), f"Expected type string for arg: host, got type: {type(host)}"
         assert isinstance(port, int), f"Expected type int for arg: port, got type: {type(port)}"
-        # assert isinstance(app, FastAPI), f"Expected type FastAPI for arg: app, got type: {type(app)}"
+        assert isinstance(app, FastAPI), f"Expected type FastAPI for arg: app, got type: {type(app)}"
 
         self.__config = uvicorn.Config(app, host=host, port=port, log_level=log_level)
 

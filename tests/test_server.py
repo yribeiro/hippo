@@ -1,24 +1,25 @@
 # -*- coding: utf-8 -*-
 import pytest
-
+from fastapi import FastAPI
 from unittest.mock import Mock, patch
 
 from hippo.server import Server
+from typing import Any
 
 
 class TestServer:
     @pytest.mark.parametrize(
-        ["test_host", "test_port"],
+        ["test_host", "test_port", "test_api"],
         [
-            (1234, 1234),  # invalid host type, valid port type
-            ("localhost", "1234"),  # valid host type, invalid port type
+            (1234, 1234, Mock(spec=FastAPI)),  # invalid host type, valid port type
+            ("localhost", "1234", Mock(spec=FastAPI)),  # valid host type, invalid port type
+            ("localhost", 1234, Mock()),  # valid host type, valid port type, invalid app type
         ],
     )
-    @patch("hippo.server.FastAPI")
-    def test_server_throws_errors_as_expected(self, mockFastApi: Mock, test_host, test_port) -> None:  # type: ignore
-        # test if the server class
+    def test_server_throws_errors_as_expected(self, test_host: str, test_port: int, test_api: Any) -> None:
+        # setup, execute and assert
         with pytest.raises(AssertionError):
-            _ = Server(app=mockFastApi, host=test_host, port=test_port)
+            _ = Server(app=test_api, host=test_host, port=test_port)
 
     @patch("hippo.server.threading.Thread")
     @patch("hippo.server.uvicorn.Config")
