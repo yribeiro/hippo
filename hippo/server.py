@@ -47,13 +47,17 @@ class Server(uvicorn.Server):
         """Method for starting the thread containing the uvicorn server"""
         self.__thread.start()
 
-    def stop_thread(self) -> None:
-        """Method for stopping the thread containing the uvicorn server"""
+    def stop_thread(self, timeout: int = 5) -> None:
+        """
+        Method for stopping the thread containing the uvicorn server
+
+        :param timeout: Timeout when exiting the launcher for child threads to exit, defaults to 5
+        """
         # didn't find a clear explanation of how excatly this should_exit variable works
         self.should_exit = True
 
         # wait for thead to terminate, this is used to ensure that the thread has been terminated.
-        self.__thread.join()
+        self.__thread.join(timeout=timeout)
 
         # check if the thread is still alive - this is needed because the join method always returns None even if it timedout.
         assert self.__thread.is_alive() is False, "Thread didn't close properly. The method thread.join() has timedout."

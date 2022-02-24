@@ -94,15 +94,26 @@ class HippoServiceLauncher:
 
         self.__server.run_thread()
 
-    def stop(self) -> None:
+    def stop(self, timeout: int = 10) -> None:
         """
         Method to stop the apps uvicorn server.
+
+        :param timeout: Timeout when exiting the launcher for child threads to exit, defaults to 10
         """
-        self.__server.stop_thread()
+        self.__server.stop_thread(timeout=timeout)
 
     @contextlib.contextmanager
-    def run_in_thread(self) -> Iterator[None]:
-        """ """
+    def run_in_thread(self, stop_timeout: int = 10) -> Iterator[None]:
+        """
+        Context manager for the Launcher.
+
+        Example Usage:
+
+        >>> with HippoServiceLauncher(host="localhost", port=1234).run_in_thread(timeout=5):
+        >>>     _ = input("Hit to enter")
+
+        :param stop_timeout: Timeout when exiting the launcher for child threads to exit, defaults to 10
+        """
         self.start()
         try:
             # I don't understand what is the point of this while loop. but it was in the description that I based this funtion on - to figure out
@@ -110,6 +121,6 @@ class HippoServiceLauncher:
                 time.sleep(1e-3)
             yield
         finally:
-            self.stop()
+            self.stop(timeout=stop_timeout)
 
     # endregion
