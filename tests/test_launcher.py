@@ -21,8 +21,9 @@ class TestServiceLauncher:
         with pytest.raises(AssertionError):
             _ = HippoServiceLauncher(host=test_host, port=test_port)
 
+    @patch("hippo.launcher.Server")
     @patch.object(HippoServiceLauncher, "_build_fast_api_app")
-    def test_launcher_initialises_as_expected(self, mock_helper_method: Mock) -> None:
+    def test_launcher_initialises_as_expected(self, mock_helper_method: Mock, mockServer: Mock) -> None:
         # setup
         host, port = "localhost", 12345
 
@@ -33,6 +34,10 @@ class TestServiceLauncher:
         assert launcher.host == host
         assert launcher.port == port
         assert mock_helper_method.call_count == 1
+        assert mockServer.call_count == 1
+        assert mockServer.call_args[1]["app"] == mock_helper_method.return_value
+        assert mockServer.call_args[1]["host"] == host
+        assert mockServer.call_args[1]["port"] == port
 
     @patch("hippo.launcher.FastAPI")
     def test_launcher_builds_app_correctly(self, mockFastAPI: Mock) -> None:
