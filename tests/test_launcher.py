@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from fastapi import APIRouter
+from fastapi import APIRouter, FastAPI
 import pytest
 
 from unittest.mock import Mock, patch
@@ -40,7 +40,8 @@ class TestServiceLauncher:
         assert mockServer.call_args[1]["port"] == port
 
     @patch("hippo.launcher.FastAPI")
-    def test_launcher_builds_app_correctly(self, mockFastAPI: Mock) -> None:
+    @patch("hippo.launcher.Server")
+    def test_launcher_builds_app_correctly(self, mockUvicornServer: Mock, mockFastAPI: Mock) -> None:
         """
         Note:
             this is a whitebox test - to ensure that the build includes all routers in the api
@@ -60,6 +61,10 @@ class TestServiceLauncher:
             # this is a white box test as the order matters
             assert expected_router == mockFastAPI.return_value.include_router.call_args[0][idx]
         assert launcher._HippoServiceLauncher__app == mockFastAPI.return_value  # type: ignore
+        assert mockUvicornServer.call_count == 1
+        assert mockUvicornServer.call_args[1]["app"] == launcher._HippoServiceLauncher__app  # type: ignore
+        assert mockUvicornServer.call_args[1]["host"] == "localhost"
+        assert mockUvicornServer.call_args[1]["port"] == 12345
 
     @patch("hippo.launcher.Server")
     @patch("hippo.launcher.HippoServiceLauncher.start")  # check if the start function is called
