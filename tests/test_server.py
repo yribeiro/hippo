@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from black import patch_click
 import pytest
 from fastapi import FastAPI
 from unittest.mock import Mock, patch
@@ -11,8 +12,8 @@ class TestServer:
     @pytest.mark.parametrize(
         ["test_host", "test_port", "test_api"],
         [
-            (1234, 1234, Mock(spec=FastAPI)),  # invalid host type, valid port type
-            ("localhost", "1234", Mock(spec=FastAPI)),  # valid host type, invalid port type
+            (1234, 1234, Mock(spec=FastAPI)),  # invalid host type, valid port type, valid app type
+            ("localhost", "1234", Mock(spec=FastAPI)),  # valid host type, invalid port type, valid app type
             ("localhost", 1234, Mock()),  # valid host type, valid port type, invalid app type
         ],
     )
@@ -23,23 +24,34 @@ class TestServer:
 
     @patch("hippo.server.threading.Thread")
     @patch("hippo.server.uvicorn.Config")
-    @patch("hippo.server.uvicorn.Server.run")
+    @patch("hippo.server.Server.run")
     def test_server_initialises_config_and_thread_as_expected(
-        self, mockUvicornServer: Mock, mockUvicorn: Mock, mockThread: Mock
+        self, mockUvicornServer: Mock, mockUvicornConfig: Mock, mockThread: Mock
     ) -> None:
 
-        Server(app="hippo.main:DEVAPP", host="localhost", port=12345, log_level="info")
+        # setup
+        mockAPP = Mock(spec=FastAPI)
 
-        mockUvicorn.assert_called_once_with("hippo.main:DEVAPP", host="localhost", port=12345, log_level="info")
-        mockThread.assert_called_once_with(target=mockUvicornServer, daemon=True)
+        # execute
+        Server(app=mockAPP, host="localhost", port=12345, log_level="info")
+
+        # assert
+        mockUvicornConfig.assert_called_once_with(mockAPP, host="localhost", port=12345, log_level="info")
+        mockThread.assert_called_once_with(target=mockUvicornServer, daemon=False)
 
     @patch("hippo.server.threading.Thread.start")
     @patch("hippo.server.threading.Thread.join")
     def test_server_runs_thread_correctly(self, mockThreadjoin: Mock, mockThreadstart: Mock) -> None:
-        server_instance = Server(app="hippo.main:DEVAPP", host="localhost", port=12345, log_level="info")
-        server_instance.run_thread()
-        server_instance.stop_thread()
 
+        # setup
+        mockAPP = Mock(spec=FastAPI)
+        server_instance = Server(app=mockAPP, host="localhost", port=12345, log_level="info")
+
+        # execute
+        server_instance.run()
+        server_instance.stop()
+
+        # assert
         assert server_instance.should_exit is True
         mockThreadstart.assert_called_once()
         mockThreadjoin.assert_called_once()
