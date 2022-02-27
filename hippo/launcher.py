@@ -36,7 +36,7 @@ class HippoServiceLauncher:
         self.__host = host
         self.__port = port
         self.__app = self._build_fast_api_app()
-        # An intance of the Server class, this is an abstraction of the uvicorn server to allow the starting and stopping of the server in a separate thread.
+        # An intance of the Server class, this is a wrapper of the uvicorn server to allow the starting and stopping of the server in a separate thread.
         self.__server = Server(app=self.__app, host=self.__host, port=self.__port)
 
     # region private API
