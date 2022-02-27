@@ -43,11 +43,11 @@ class Server(uvicorn.Server):
     def install_signal_handlers(self) -> None:
         pass
 
-    def run_thread(self) -> None:
+    def run(self) -> None:
         """Method for starting the thread containing the uvicorn server"""
         self.__thread.start()
 
-    def stop_thread(self, timeout: int = 5) -> None:
+    def stop(self, timeout: int = 5) -> None:
         """
         Method for stopping the thread containing the uvicorn server
 

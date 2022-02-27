@@ -92,7 +92,7 @@ class HippoServiceLauncher:
         Note: This method runs the server inside subprocess / child daemon thread.
         """
 
-        self.__server.run_thread()
+        self.__server.run()
 
     def stop(self, timeout: int = 10) -> None:
         """
@@ -100,7 +100,7 @@ class HippoServiceLauncher:
 
         :param timeout: Timeout when exiting the launcher for child threads to exit, defaults to 10
         """
-        self.__server.stop_thread(timeout=timeout)
+        self.__server.stop(timeout=timeout)
 
     @contextlib.contextmanager
     def run_in_thread(self, stop_timeout: int = 10) -> Iterator[None]:
