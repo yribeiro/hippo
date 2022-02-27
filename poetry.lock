@@ -814,7 +814,7 @@ watchdog = ["watchdog"]
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.9,<3.11"
-content-hash = "7c91477acd9263b5fd2a9570bda8befed5fe23b2c42d8ea029fc866b7b938d34"
+content-hash = "28869b1dccf3106d4b1df35a5703c3fe3753b2377aa96109a3603ff044d41ef2"
 
 [metadata.files]
 alabaster = [
