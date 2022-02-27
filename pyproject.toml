@@ -16,6 +16,7 @@ torch = "^1.10.0"
 Flask = "^2.0.2"
 fastapi = "^0.71.0"
 uvicorn = "^0.17.0"
+threaded = "^4.1.0"
 
 [tool.poetry.dev-dependencies]
 coverage = "^6.2"
