@@ -48,8 +48,8 @@ class TestServer:
         server_instance = Server(app=mockAPP, host="localhost", port=12345, log_level="info")
 
         # execute
-        server_instance.run()
-        server_instance.stop()
+        server_instance.run_thread()
+        server_instance.stop_thread()
 
         # assert
         assert server_instance.should_exit is True
