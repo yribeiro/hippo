@@ -36,11 +36,11 @@ class Server(uvicorn.Server):
         # define the thread as a class property/parameter so that the "run_in_thread" and "stop_thread" can be run on the same thread.
         self.__thread = threading.Thread(target=self.run, daemon=False)
 
-    def run(self) -> None:
+    def run_thread(self) -> None:
         """Method for starting the thread containing the uvicorn server"""
         self.__thread.start()
 
-    def stop(self, timeout: int = 5) -> None:
+    def stop_thread(self, timeout: int = 5) -> None:
         """
         Method for stopping the thread containing the uvicorn server
 
